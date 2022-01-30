@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-EmsApplication<EMS>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.example.EMS.EmsApplication",
+      "projectName": "EMS",
+      "args": ""
+    }
+  ]
+}
