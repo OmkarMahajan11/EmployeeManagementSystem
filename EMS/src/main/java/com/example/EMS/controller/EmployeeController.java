@@ -6,8 +6,10 @@ import com.example.EMS.exception.ResourceNotFoundException;
 import com.example.EMS.model.Employee;
 import com.example.EMS.repository.EmployeeRepository;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,5 +55,13 @@ public class EmployeeController {
     ue.setEmailId(updateDetails.getEmailId());
     employeeRepository.save(ue);
     return ResponseEntity.ok(ue);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable long id) {
+    Employee e = employeeRepository.findById(id)
+      .orElseThrow(() -> new ResourceNotFoundException("Employee does not exist with id: " + id));
+    employeeRepository.delete(e);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }
